@@ -41,21 +41,6 @@ TARGET_LINK_LIBRARIES(graphvizlib
     pack
 )
 
-ADD_EXECUTABLE(graphvizlib.node
-    ${SRCS}
-)
-
-SET_TARGET_PROPERTIES(graphvizlib.node PROPERTIES LINK_FLAGS "-s ENVIRONMENT=node ${EM_FLAGS}")
-
-TARGET_LINK_LIBRARIES(graphvizlib.node
-    gvplugin_core
-    gvplugin_dot_layout
-    gvplugin_neato_layout
-    common
-    ortho
-    pack
-)
-
 INSTALL(FILES 
     ${CMAKE_CURRENT_BINARY_DIR}/graphvizlib.wasm
     DESTINATION dist
