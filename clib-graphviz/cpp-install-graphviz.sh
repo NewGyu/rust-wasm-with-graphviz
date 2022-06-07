@@ -6,7 +6,7 @@ then
     cd ./src-graphviz
     mkdir ./build
     cd ./build
-    cmake ..
+    cmake .. -Dwith_expat=OFF
     cmake --build . #  -- -j (See https://gitlab.com/graphviz/graphviz/-/issues/2098)
     cd ..
 

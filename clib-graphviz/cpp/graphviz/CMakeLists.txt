@@ -9,7 +9,7 @@ INCLUDE_DIRECTORIES(
 )
 
 option(enable_ltdl     "Support on-demand plugin loading" OFF)
-option(with_expat      "Support HTML-like labels through expat" ON )
+option(with_expat      "Support HTML-like labels through expat" OFF )
 option(with_digcola    "DIGCOLA features in neato layout engine" ON )
 option(with_ipsepcola  "IPSEPCOLA features in neato layout engine (disabled by default - C++ portability issues)." OFF )
 option(with_ortho      "ORTHO features in neato layout engine." ON )
