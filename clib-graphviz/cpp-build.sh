@@ -9,4 +9,4 @@ then
 else
     cd ./build
 fi
-cmake --build . --target install -- -j
+cmake --build . 

@@ -40,9 +40,3 @@ TARGET_LINK_LIBRARIES(graphvizlib
     ortho
     pack
 )
-
-INSTALL(FILES 
-    ${CMAKE_CURRENT_BINARY_DIR}/graphvizlib.wasm
-    DESTINATION dist
-    COMPONENT runtime
-)
