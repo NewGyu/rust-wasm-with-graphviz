@@ -4,8 +4,6 @@
 #include <gvc.h>
 #include <globals.h>
 
-#include <emscripten.h>
-
 extern gvplugin_library_t gvplugin_core_LTX_library;
 extern gvplugin_library_t gvplugin_dot_layout_LTX_library;
 extern gvplugin_library_t gvplugin_neato_layout_LTX_library;
@@ -74,19 +72,3 @@ const char *Graphviz::layout(const char *src, const char *format, const char *en
 
     return result;
 }
-
-void Graphviz::createFile(const char *path, const char *data)
-{
-    EM_ASM(
-        {
-            var path = UTF8ToString($0);
-            var data = UTF8ToString($1);
-
-            FS.createPath("/", PATH.dirname(path));
-            FS.writeFile(PATH.join("/", path), data);
-        },
-        path, data);
-}
-
-//  Include JS Glue  ---
-// #include "main_glue.cpp"
