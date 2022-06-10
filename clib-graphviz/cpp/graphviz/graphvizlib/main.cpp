@@ -89,4 +89,4 @@ void Graphviz::createFile(const char *path, const char *data)
 }
 
 //  Include JS Glue  ---
-#include "main_glue.cpp"
+// #include "main_glue.cpp"

@@ -69,6 +69,5 @@ target_include_directories(common PRIVATE
     ${GRAPHVIZ_LIB_DIR}/pack
     ${GRAPHVIZ_LIB_DIR}/pathplan
     ${GRAPHVIZ_LIB_DIR}/xdot
-    ${EXPAT_DIR}/lib
 )
 
