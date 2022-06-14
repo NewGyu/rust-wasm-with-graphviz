@@ -1,14 +1,11 @@
 #!/bin/bash
+BUILD_DIR=$(dirname $0)/src-graphviz/build
 
-if [ ! -d "src-graphviz/build" ] 
-then
-    #  Generate grammar files (and others)  ---
-    cd ./src-graphviz
-    mkdir ./build
-    cd ./build
-    cmake .. -Dwith_expat=OFF
-    cmake --build . #  -- -j (See https://gitlab.com/graphviz/graphviz/-/issues/2098)
-    cd ..
-
-    cd ..
+if [ ! -d $BUILD_DIR ]; then
+    mkdir $BUILD_DIR
 fi
+
+cd $BUILD_DIR
+cmake .. -Dwith_expat=OFF
+cmake --build . #  -- -j (See https://gitlab.com/graphviz/graphviz/-/issues/2098)
+cd $(dirname $0)
