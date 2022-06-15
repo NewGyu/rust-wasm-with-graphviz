@@ -7,3 +7,6 @@ edition = "2021"
 
 [workspace]
 members = ["clib-graphviz"]
+
+[dependencies]
+clib-graphviz = {path = "./clib-graphviz"}

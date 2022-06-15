@@ -1,3 +1,4 @@
+use clib_graphviz::ver;
 fn main() {
-    println!("Hello, world!");
+    println!("Hello, world! {}", ver());
 }

@@ -7,5 +7,5 @@ fn main() {
         .build();
 
     println!("cargo:rustc-link-search=native={}", dst.display());
-    println!("cargo:rust-link-lib=static=");
+    println!("cargo:rustc-link-lib=static=graphvizlib");
 }
