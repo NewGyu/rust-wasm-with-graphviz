@@ -26,7 +26,7 @@ INCLUDE_DIRECTORIES(
     ${GRAPHVIZ_LIB_DIR}/sparse
 )
 
-ADD_EXECUTABLE(graphvizlib
+ADD_LIBRARY(graphvizlib STATIC
     ${SRCS}
 )
 
