@@ -17,3 +17,4 @@ ENV EMSDK /home/vscode/emsdk
 ENV PATH $EMSDK/upstream/bin:$PATH
 RUN cargo install wasm-pack && rustup target install wasm32-wasi
 RUN curl https://wasmtime.dev/install.sh -sSf | bash
+RUN sudo apt install -y bison flex
