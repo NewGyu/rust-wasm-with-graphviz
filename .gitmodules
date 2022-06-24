@@ -1,6 +1,3 @@
-[submodule "clib-graphviz/emsdk"]
-	path = clib-graphviz/emsdk
-	url = https://github.com/emscripten-core/emsdk.git
 [submodule "clib-graphviz/src-graphviz"]
 	path = clib-graphviz/src-graphviz
 	url = https://gitlab.com/graphviz/graphviz.git
