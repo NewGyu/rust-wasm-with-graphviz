@@ -50,4 +50,30 @@ ADD_SUBDIRECTORY(lib)
 ADD_SUBDIRECTORY(plugin)
 ADD_SUBDIRECTORY(graphvizlib)
 
-INSTALL(TARGETS graphvizlib DESTINATION .)
+INSTALL(TARGETS
+    graphvizlib
+    cdt
+    circogen
+    common
+    dotgen
+    fdpgen
+    ingraphs
+    label
+    neatogen
+    ortho
+    osage
+    pack
+    patchwork
+    pathplan
+    rbtree
+    sparse
+    sfdpgen
+    twopigen
+    vpsc
+    xdot
+    cgraph
+    gvc
+    gvplugin_core
+    gvplugin_dot_layout
+    gvplugin_neato_layout
+    DESTINATION .)
