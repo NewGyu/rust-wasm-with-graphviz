@@ -15,6 +15,6 @@ RUN git clone https://github.com/emscripten-core/emsdk.git \
 COPY .bash_aliases .bash_aliases
 ENV EMSDK /home/vscode/emsdk
 ENV PATH $EMSDK/upstream/bin:$PATH
-RUN cargo install wasm-pack && rustup target install wasm32-wasi
+RUN cargo install wasm-pack && rustup target install wasm32-wasi wasm32-unknown-unknown
 RUN curl https://wasmtime.dev/install.sh -sSf | bash
 RUN sudo apt install -y bison flex
