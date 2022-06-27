@@ -2,7 +2,10 @@ use std::ffi::{CStr, CString};
 use std::fmt;
 
 use graphviz_sys::GraphvizSys;
+#[cfg(all(target_arch = "wasm32", not(target_os = "wasi")))]
+use wasm_bindgen::prelude::*;
 
+#[cfg_attr(all(target_arch = "wasm32", not(target_os = "wasi")), wasm_bindgen)]
 pub fn gvz_version() -> String {
     unsafe { CStr::from_ptr(GraphvizSys::version()) }
         .to_str()
@@ -10,6 +13,7 @@ pub fn gvz_version() -> String {
         .to_string()
 }
 
+#[cfg_attr(all(target_arch = "wasm32", not(target_os = "wasi")), wasm_bindgen)]
 pub fn gvz_last_error() -> String {
     unsafe { CStr::from_ptr(GraphvizSys::lastError()) }
         .to_str()
@@ -17,6 +21,7 @@ pub fn gvz_last_error() -> String {
         .to_string()
 }
 
+#[cfg_attr(all(target_arch = "wasm32", not(target_os = "wasi")), wasm_bindgen)]
 pub fn gvz_layout(dot: String) -> String {
     let cs_dot = CString::new(dot).unwrap();
     unsafe {

@@ -10,13 +10,14 @@ fn main() {
             .join("upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake");
         cm.define("CMAKE_TOOLCHAIN_FILE", em_cmake);
         cm.target("wasm32-unknown-emscripten");
+    } else {
+        println!("cargo:rustc-link-lib=dylib=stdc++");
     }
     let dst = &cm.build();
     println!("cargo:rustc-link-search=native={}", dst.display());
     for lib in LIBS {
         println!("cargo:rustc-link-lib=static={}", lib);
     }
-    println!("cargo:rustc-link-lib=dylib=stdc++");
     /*
     let bindings = bindgen::Builder::default()
         .header("cpp/graphvizlib/main.hpp")
