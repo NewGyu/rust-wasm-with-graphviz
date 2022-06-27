@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [workspace]
-members = ["clib-graphviz"]
+members = [".","graphviz-sys"]
 
 [dependencies]
-clib-graphviz = {path = "./clib-graphviz"}
+clib-graphviz = {path = "./graphviz-sys"}
