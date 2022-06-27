@@ -10,7 +10,7 @@ pub fn gvz_version() -> String {
         .to_string()
 }
 
-pub fn gvz_lastError() -> String {
+pub fn gvz_last_error() -> String {
     unsafe { CStr::from_ptr(GraphvizSys::lastError()) }
         .to_str()
         .unwrap()
@@ -31,52 +31,61 @@ pub fn gvz_layout(dot: String) -> String {
     }
 }
 
-#[allow(non_camel_case_types)]
+#[allow(unused)]
 enum OutputFormat {
-    dot,
-    dot_json,
-    json,
-    svg,
-    xdot_json,
+    Dot,
+    DotJson,
+    Json,
+    Svg,
+    XdotJson,
 }
 
-#[allow(non_camel_case_types)]
+#[allow(unused)]
 enum LayoutEngine {
-    circo,
-    dot,
-    fdp,
-    sfdp,
-    neato,
-    osage,
-    patchwork,
-    twopi,
+    Circo,
+    Dot,
+    Fdp,
+    Sfdp,
+    Neato,
+    Osage,
+    Patchwork,
+    Twopi,
 }
 
 impl fmt::Display for OutputFormat {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            OutputFormat::svg => write!(f, "svg"),
-            _ => write!(f, "unko"),
+            OutputFormat::Svg => write!(f, "svg"),
+            OutputFormat::Dot => write!(f, "dot"),
+            OutputFormat::Json => write!(f, "json"),
+            OutputFormat::DotJson => write!(f, "dot_json"),
+            OutputFormat::XdotJson => write!(f, "xdot_json"),
         }
     }
 }
 impl Default for OutputFormat {
     fn default() -> Self {
-        OutputFormat::svg
+        OutputFormat::Svg
     }
 }
 
 impl fmt::Display for LayoutEngine {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            LayoutEngine::dot => write!(f, "dot"),
-            _ => write!(f, "unko"),
+            LayoutEngine::Dot => write!(f, "dot"),
+            LayoutEngine::Circo => write!(f, "circo"),
+            LayoutEngine::Fdp => write!(f, "fdp"),
+            LayoutEngine::Sfdp => write!(f, "sfdp"),
+            LayoutEngine::Neato => write!(f, "neato"),
+            LayoutEngine::Osage => write!(f, "osage"),
+            LayoutEngine::Patchwork => write!(f, "patchwork"),
+            LayoutEngine::Twopi => write!(f, "twopi"),
         }
     }
 }
 impl Default for LayoutEngine {
     fn default() -> Self {
-        LayoutEngine::dot
+        LayoutEngine::Dot
     }
 }
 
