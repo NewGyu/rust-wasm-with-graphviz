@@ -1,5 +1,5 @@
-use std::{env, path::PathBuf};
 use cmake::Config;
+use std::{env, path::PathBuf};
 
 fn main() {
     let mut cm = Config::new("cpp");
@@ -7,7 +7,7 @@ fn main() {
     let target = env::var("TARGET").unwrap();
     if target.contains("wasm32") {
         let em_cmake = PathBuf::from(env!("EMSDK"))
-        .join("upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake");
+            .join("upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake");
         cm.define("CMAKE_TOOLCHAIN_FILE", em_cmake);
         cm.target("wasm32-unknown-emscripten");
     }
@@ -16,9 +16,21 @@ fn main() {
     for lib in LIBS {
         println!("cargo:rustc-link-lib=static={}", lib);
     }
+    println!("cargo:rustc-link-lib=dylib=stdc++");
+    /*
+    let bindings = bindgen::Builder::default()
+        .header("cpp/graphvizlib/main.hpp")
+        .size_t_is_usize(true)
+        .generate()
+        .expect("Unable to generate bindings!");
+    let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
+    bindings
+        .write_to_file(out_path.join("bindings.rs"))
+        .expect("Couldn't write bindings!");
+    */
 }
 
-const LIBS:[&str;25] = [
+const LIBS: [&str; 25] = [
     "graphvizlib",
     "cdt",
     "circogen",
@@ -43,5 +55,5 @@ const LIBS:[&str;25] = [
     "gvc",
     "gvplugin_core",
     "gvplugin_dot_layout",
-    "gvplugin_neato_layout"
+    "gvplugin_neato_layout",
 ];
