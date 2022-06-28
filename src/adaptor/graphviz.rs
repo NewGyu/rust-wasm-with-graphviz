@@ -28,8 +28,8 @@ pub fn gvz_layout(dot: String) -> String {
         let mut g = GraphvizSys::new(false, 0);
         let layouted = g.layout(
             cs_dot.as_ptr(),
-            to_cstring(OutputFormat::default()).as_ptr(),
-            to_cstring(LayoutEngine::default()).as_ptr(),
+            OutputFormat::default().to_cstring().as_ptr(),
+            LayoutEngine::default().to_cstring().as_ptr(),
         );
         g.destruct();
         CStr::from_ptr(layouted).to_str().unwrap().to_string()
@@ -94,10 +94,14 @@ impl Default for LayoutEngine {
     }
 }
 
-fn to_cstring<T>(val: T) -> CString
-where
-    T: fmt::Display,
+trait ToCstring<T = Self> 
+    where Self: fmt::Display
 {
-    let stringified = val.to_string();
-    CString::new(stringified.as_str()).unwrap()
+    fn to_cstring(&self) -> CString {
+        let stringified = self.to_string();
+        CString::new(stringified.as_str()).unwrap()
+    }
 }
+
+impl ToCstring for OutputFormat{}
+impl ToCstring for LayoutEngine {}
