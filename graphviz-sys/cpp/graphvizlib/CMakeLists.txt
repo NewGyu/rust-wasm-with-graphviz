@@ -12,7 +12,7 @@ PROJECT(graphvizlib)
 #  ---  ---  ---
 
 SET(SRCS
-    main.cpp
+    main.c
 )
 
 INCLUDE_DIRECTORIES(

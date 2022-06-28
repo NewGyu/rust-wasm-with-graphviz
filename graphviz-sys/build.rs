@@ -18,9 +18,8 @@ fn main() {
     for lib in LIBS {
         println!("cargo:rustc-link-lib=static={}", lib);
     }
-    /*
     let bindings = bindgen::Builder::default()
-        .header("cpp/graphvizlib/main.hpp")
+        .header("cpp/graphvizlib/main.h")
         .size_t_is_usize(true)
         .generate()
         .expect("Unable to generate bindings!");
@@ -28,7 +27,6 @@ fn main() {
     bindings
         .write_to_file(out_path.join("bindings.rs"))
         .expect("Couldn't write bindings!");
-    */
 }
 
 const LIBS: [&str; 25] = [

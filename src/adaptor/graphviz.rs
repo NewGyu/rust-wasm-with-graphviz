@@ -1,13 +1,13 @@
 use std::ffi::{CStr, CString};
 use std::fmt;
 
-use graphviz_sys::GraphvizSys;
+use graphviz_sys::{graphviz_lastError, graphviz_version, graphviz_layout};
 #[cfg(all(target_arch = "wasm32", not(target_os = "wasi")))]
 use wasm_bindgen::prelude::*;
 
 #[cfg_attr(all(target_arch = "wasm32", not(target_os = "wasi")), wasm_bindgen)]
 pub fn gvz_version() -> String {
-    unsafe { CStr::from_ptr(GraphvizSys::version()) }
+    unsafe { CStr::from_ptr(graphviz_version()) }
         .to_str()
         .unwrap()
         .to_string()
@@ -15,7 +15,7 @@ pub fn gvz_version() -> String {
 
 #[cfg_attr(all(target_arch = "wasm32", not(target_os = "wasi")), wasm_bindgen)]
 pub fn gvz_last_error() -> String {
-    unsafe { CStr::from_ptr(GraphvizSys::lastError()) }
+    unsafe { CStr::from_ptr(graphviz_lastError()) }
         .to_str()
         .unwrap()
         .to_string()
@@ -25,13 +25,11 @@ pub fn gvz_last_error() -> String {
 pub fn gvz_layout(dot: String) -> String {
     let cs_dot = CString::new(dot).unwrap();
     unsafe {
-        let mut g = GraphvizSys::new(false, 0);
-        let layouted = g.layout(
+        let layouted = graphviz_layout(
             cs_dot.as_ptr(),
             OutputFormat::default().to_cstring().as_ptr(),
             LayoutEngine::default().to_cstring().as_ptr(),
         );
-        g.destruct();
         CStr::from_ptr(layouted).to_str().unwrap().to_string()
     }
 }

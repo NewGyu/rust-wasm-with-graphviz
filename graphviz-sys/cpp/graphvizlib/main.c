@@ -1,4 +1,4 @@
-#include "main.hpp"
+#include "main.h"
 
 #include "../config.h"
 #include <gvc.h>
@@ -15,31 +15,31 @@ int vizErrorf(char *buf)
     strncpy(lastErrorStr, buf, sizeof(lastErrorStr) - 1);
     return 0;
 }
-
-const char *Graphviz::version()
+const char *graphviz_version()
 {
     return PACKAGE_VERSION;
 }
 
-const char *Graphviz::lastError()
+const char *graphviz_lastError()
 {
     return lastErrorStr;
 }
 
-int origYInvert = Y_invert;
-int origNop = Nop;
+int YInvert_DEFAULT = 0;
+int Nop_DEFAULT = 0;
 
-Graphviz::Graphviz(bool yInvert, int nop)
+void graphviz_setYInvert(_Bool yInvert)
 {
-    Y_invert = yInvert == true ? 1 : origYInvert;
-    Nop = nop > 0 ? nop : origNop;
+    Y_invert = yInvert == true ? 1 : YInvert_DEFAULT;
 }
 
-Graphviz::~Graphviz()
+void graphviz_setNop(int nop)
 {
+    Nop = nop > 0 ? nop : Nop_DEFAULT;
 }
 
-const char *Graphviz::layout(const char *src, const char *format, const char *engine)
+
+const char *graphviz_layout(const char *src, const char *format, const char *engine)
 {
     lastErrorStr[0] = '\0';
 
