@@ -5,7 +5,7 @@
 		"args": {
 			// Use the VARIANT arg to pick a Debian OS version: buster, bullseye
 			// Use bullseye when on local on arm64/Apple Silicon.
-			"VARIANT": "buster"
+			"VARIANT": "bullseye"
 		}
 	},
 	"runArgs": [
@@ -34,7 +34,8 @@
 				"tamasfe.even-better-toml",
 				"serayuzgur.crates",
 				"EditorConfig.EditorConfig",
-				"dtsvet.vscode-wasm"
+				"dtsvet.vscode-wasm",
+				"twxs.cmake"
 			]
 		}
 	},
