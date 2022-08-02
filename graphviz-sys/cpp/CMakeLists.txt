@@ -9,7 +9,7 @@ SET(GRAPHVIZ_PLUGIN_DIR "${GRAPHVIZ_DIR}/plugin")
 SET(GRAPHVIZ_BUILD_DIR "${GRAPHVIZ_DIR}/build")
 
 INCLUDE_DIRECTORIES(
-    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/headers
 )
 
 option(enable_ltdl     "Support on-demand plugin loading" OFF)
