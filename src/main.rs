@@ -1,4 +1,4 @@
-use graphviz_ffi_example::adaptor::graphviz::{gvz_version, gvz_layout};
+use anyhow::Ok;
 use libwasigraphviz::adaptor::graphviz::{gvz_version, gvz_layout};
 
 fn main() -> anyhow::Result<()> {

@@ -13,3 +13,5 @@ members = [".", "graphviz-sys"]
 [dependencies]
 graphviz-sys = { path = "./graphviz-sys" }
 wasm-bindgen = "0.2"
+anyhow = "1.0.*"
+thiserror = "1.0.*"
