@@ -2,15 +2,16 @@ use cmake::Config;
 use std::{env, path::PathBuf};
 
 fn main() {
-    let mut cm = Config::new("cpp");
+    let mut cm = Config::new("cmake");
     cm.define("CMAKE_BUILD_TYPE", "MinSizeRel");
+
     let target = env::var("TARGET").unwrap();
-    if target.contains("wasm32") {
-        let em_cmake = PathBuf::from(env!("EMSDK"))
-            .join("upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake");
-        cm.define("CMAKE_TOOLCHAIN_FILE", em_cmake);
-        cm.target("wasm32-unknown-emscripten");
+    if target == "wasm32-wasi" {
+        cm.define("CMAKE_TOOLCHAIN_FILE", PathBuf::from("wasi-sdk.cmake"));
+        cm.define("WASI_SDK_PREFIX", PathBuf::from(env!("WASI_SDK")));
+        cm.target("wasm32-wasi");
     } else {
+        println!("cargo:warning=This building script assumes that 'wasm32-wasi' target is specified.");
         println!("cargo:rustc-link-lib=dylib=stdc++");
     }
     let dst = &cm.build();
@@ -19,7 +20,7 @@ fn main() {
         println!("cargo:rustc-link-lib=static={}", lib);
     }
     let bindings = bindgen::Builder::default()
-        .header("cpp/graphvizlib/main.h")
+        .header("cmake/graphvizlib/main.h")
         .size_t_is_usize(true)
         .generate()
         .expect("Unable to generate bindings!");

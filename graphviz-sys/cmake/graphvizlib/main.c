@@ -1,6 +1,6 @@
 #include "main.h"
 
-#include "../config.h"
+#include <config.h>
 #include <gvc.h>
 #include <globals.h>
 
