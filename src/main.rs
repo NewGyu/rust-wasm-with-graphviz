@@ -1,6 +1,7 @@
 use graphviz_ffi_example::adaptor::graphviz::{gvz_version, gvz_layout};
+use libwasigraphviz::adaptor::graphviz::{gvz_version, gvz_layout};
 
-fn main() {
+fn main() -> anyhow::Result<()> {
     let dot_string = r#"
         digraph G {
             node [shape=rect];
@@ -34,4 +35,6 @@ fn main() {
     "#;
     println!("Hello, Graphviz! {}", gvz_version());
     println!("{}", gvz_layout(dot_string.to_string()));
+
+    Ok(())
 }
