@@ -2,7 +2,7 @@
 
 SRC_DIR=$(cd $(dirname $0); pwd)
 BUILD_DIR=$SRC_DIR/build
-CMAKE_DIR=$SRC_DIR/cpp
+CMAKE_DIR=$SRC_DIR/cmake
 
 if [ ! -d $BUILD_DIR ]; then
     mkdir $BUILD_DIR

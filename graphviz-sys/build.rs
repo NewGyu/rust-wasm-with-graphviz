@@ -2,7 +2,7 @@ use cmake::Config;
 use std::{env, path::PathBuf};
 
 fn main() {
-    let mut cm = Config::new("cpp");
+    let mut cm = Config::new("cmake");
     cm.define("CMAKE_BUILD_TYPE", "MinSizeRel");
 
     let target = env::var("TARGET").unwrap();
@@ -20,7 +20,7 @@ fn main() {
         println!("cargo:rustc-link-lib=static={}", lib);
     }
     let bindings = bindgen::Builder::default()
-        .header("cpp/graphvizlib/main.h")
+        .header("cmake/graphvizlib/main.h")
         .size_t_is_usize(true)
         .generate()
         .expect("Unable to generate bindings!");
